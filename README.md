@@ -1,6 +1,6 @@
 # Sunbather
 
-A minimal pink colorscheme for Vim.
+A minimal cyan colorscheme for Vim.
 
 ## Screenshots
 
