@@ -1,4 +1,4 @@
-# Sunbather
+# Nazgul
 
 A minimal cyan colorscheme for Vim.
 
