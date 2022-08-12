@@ -7,7 +7,7 @@ A minimal cyan colorscheme for Vim.
 *JetBrains Mono* font on dark and light backgrounds:
 
 ![](screenshots/dark.png)
-![](screenshots/light.png)
+<!-- TODO: ![](screenshots/light.png) -->
 
 ## Installation
 
