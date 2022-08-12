@@ -17,7 +17,7 @@ endif
 
 let g:colors_name='nazgul'
 
-let s:black           = { "gui": "#000000", "cterm": "232" }
+let s:black           = { "gui": "#0D0D0F", "cterm": "232" }
 let s:medium_gray     = { "gui": "#767676", "cterm": "243" }
 let s:white           = { "gui": "#F1F1F1", "cterm": "15"  }
 let s:actual_white    = { "gui": "#FFFFFF", "cterm": "231" }
@@ -54,7 +54,7 @@ if &background == "dark"
   let s:norm            = s:lighter_gray
   let s:norm_subtle     = s:medium_gray
   let s:pink            = s:light_pink
-  let s:cyan            = s:light_cyan
+  let s:cyan            = s:dark_cyan
   let s:green           = s:light_green
   let s:red             = s:light_red
   let s:visual          = s:light_pink
@@ -95,44 +95,6 @@ endif
 call s:h("Cursor",        {"bg": s:cyan, "fg": s:norm })
 call s:h("Comment",       {"fg": s:bg_subtle, "gui": "italic"})
 
-call s:h("Constant",      {"fg": s:cyan})
-hi! link Character        Constant
-hi! link Number           Constant
-hi! link Boolean          Constant
-hi! link Float            Constant
-hi! link String           Constant
-
-call s:h("Identifier",    {"fg": s:dark_blue})
-hi! link Identifier       Normal
-hi! link Function         Identifier
-
-call s:h("Statement",     {"fg": s:norm_subtle})
-hi! link Conditonal       Statement
-hi! link Repeat           Statement
-hi! link Label            Statement
-hi! link Keyword          Statement
-hi! link Exception        Statement
-
-call s:h("Operator",      {"fg": s:norm, "cterm": "bold", "gui": "bold"})
-
-call s:h("PreProc",     {"fg": s:norm_subtle})
-hi! link Include          PreProc
-hi! link Define           PreProc
-hi! link Macro            PreProc
-hi! link PreCondit        PreProc
-
-call s:h("Type",          {"fg": s:norm})
-hi! link StorageClass     Type
-hi! link Structure        Type
-hi! link Typedef          Type
-
-call s:h("Special",       {"fg": s:norm_subtle, "gui": "italic"})
-hi! link SpecialChar      Special
-hi! link Tag              Special
-hi! link Delimiter        Special
-hi! link SpecialComment   Special
-hi! link Debug            Special
-
 call s:h("Underlined",    {"fg": s:norm, "gui": "underline", "cterm": "underline"})
 call s:h("Ignore",        {"fg": s:bg})
 call s:h("Error",         {"fg": s:actual_white, "bg": s:red, "cterm": "bold"})
@@ -142,7 +104,7 @@ call s:h("NonText",       {"fg": s:bg_subtle})
 call s:h("Directory",     {"fg": s:dark_blue})
 call s:h("ErrorMsg",      {"fg": s:red})
 call s:h("IncSearch",     {"bg": s:yellow, "fg": s:light_black})
-call s:h("Search",        {"bg": s:dark_red, "fg": s:light_black})
+call s:h("Search",        {"bg": s:cyan, "fg": s:bg_very_subtle})
 call s:h("MoreMsg",       {"fg": s:medium_gray, "cterm": "bold", "gui": "bold"})
 hi! link ModeMsg MoreMsg
 call s:h("LineNr",        {"fg": s:bg_subtle})
@@ -189,7 +151,7 @@ call s:h("CursorColumn",  {"bg": s:bg_very_subtle})
 call s:h("CursorLine",    {"bg": s:bg_very_subtle})
 call s:h("ColorColumn",   {"bg": s:bg_subtle})
 
-call s:h("MatchParen",    {"bg": s:bg_subtle, "fg": s:norm})
+call s:h("MatchParen",    {"bg": s:cyan, "fg": s:bg})
 call s:h("qfLineNr",      {"fg": s:medium_gray})
 
 call s:h("htmlH1",        {"bg": s:bg, "fg": s:norm})
@@ -211,21 +173,76 @@ call s:h("WhichKeyDesc",            {"bg": s:bg, "fg": s:norm_subtle, "gui": "bo
 call s:h("WhichKeySeparator",       {"bg": s:bg, "fg": s:norm, "gui": "bold", "cterm": "bold"})
 call s:h("WhichKeyFloat",           {"bg": s:bg})
 
+call s:h("Constant",      {"fg": s:cyan})
+hi! link Character        Constant
+hi! link Number           Constant
+hi! link Boolean          Constant
+hi! link Float            Constant
+hi! link String           Constant
+hi link TSTag Constant
+
+call s:h("Identifier",    {"fg": s:norm_subtle})
+
+call s:h("Statement",     {"fg": s:lighter_black, "gui": "italic"})
+hi! link Conditonal       Statement
+hi! link Repeat           Statement
+hi! link Label            Statement
+hi! link Exception        Statement
+
+call s:h("Variable",     {"fg": s:norm})
+hi! link TSVariable        Variable
+hi! link Function         Variable
+
+call s:h("Keyword",     {"fg": s:norm_subtle, "gui": "italic"})
+hi link TSKeyword Keyword
+
+call s:h("Operator",      {"fg": s:cyan})
+
+call s:h("PreProc",     {"fg": s:norm_subtle})
+hi! link Include          PreProc
+hi! link Define           PreProc
+hi! link Macro            PreProc
+hi! link PreCondit        PreProc
+
+call s:h("Type",          {"fg": s:norm_subtle, "gui": "italic"})
+hi! link StorageClass     Type
+hi! link Structure        Type
+hi! link Typedef          Type
+hi! link TSType Type
+
+call s:h("Special",       {"fg": s:norm_subtle })
+hi! link SpecialChar      Special
+hi! link Tag              Special
+hi! link Delimiter        Special
+hi! link SpecialComment   Special
+hi! link Debug            Special
+
+" Dots, Braces etc
+call s:h("Symbol",      {"fg": s:lighter_black})
+hi link TSPunctBracket Symbol
+hi link TSPunctSpecial Symbol
+hi link TSPunctDelimiter Symbol
+hi link TSOperator Symbol
+
+call s:h("Property", {"fg": s:norm})
+hi link TSProperty  Property
+hi link TSMethod Property
 hi link WhichKeyGroup WhichKey
 
-" Neomake
-hi link NeomakeWarningSign	SyntasticWarningSign
-hi link NeomakeErrorSign	SyntasticErrorSign
-
 " ALE
-hi link ALEWarningSign	SyntasticWarningSign
+hi link AEWarningSign	SyntasticWarningSign
 hi link ALEErrorSign	SyntasticErrorSign
 
 " Signify, git-gutter
-hi link SignifySignAdd              LineNr
-hi link SignifySignDelete           LineNr
-hi link SignifySignChange           LineNr
-hi link GitGutterAdd                LineNr
-hi link GitGutterDelete             LineNr
-hi link GitGutterChange             LineNr
-hi link GitGutterChangeDelete       LineNr
+hi link SignifySignAdd              DiffAdd
+hi link SignifySignDelete           DiffDelete
+hi link SignifySignChange           DiffChange
+hi link GitGutterAdd                DiffAdd
+hi link GitGutterDelete             DiffDelete
+hi link GitGutterChange             DiffChange
+hi link GitGutterChangeDelete       DiffChange
+
+hi link tkBrackets Symbol
+hi link tkLink Constant
+hi link tkTag Symbol
+
